@@ -16,18 +16,31 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 	
 	@Autowired
 	public CarreraJpaRepository carreraJpaRepository;
+	
+	
+	@Override
+	public Page<Carrera> findCarrerasWithPaginationAndSorting(Integer page, Integer pageSize, String field, boolean asc)
+			throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return carreraJpaRepository.findAll(PageRequest.of(page, pageSize).withSort(sorting));
+	}
 
 	
 	@Override
-	public Page<Carrera> findCarrerasByNameAndWithPaginationAndSorting(String nombre, Integer page, Integer pageSize, boolean asc)
+	public Page<Carrera> findCarrerasByNameAndWithPaginationAndSorting(String nombre, Integer page, Integer pageSize, String field, boolean asc)
 			throws Exception {
-		Sort sorting = Sort.by("carrera");
+		Sort sorting = Sort.by(field);
 		
 		if(!asc) {
-			sorting = Sort.by("carrera").descending();
+			sorting = Sort.by(field).descending();
 		}
 
-		return carreraJpaRepository.findCarreraByNameAndWithPaginationAndSorting(nombre, PageRequest.of(page, pageSize).withSort(sorting));
+		return carreraJpaRepository.findCarrerasByNameAndWithPaginationAndSorting(nombre, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 		
 }

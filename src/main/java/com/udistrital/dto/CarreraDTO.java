@@ -3,6 +3,7 @@ package com.udistrital.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +14,12 @@ import lombok.Setter;
 @Builder
 public class CarreraDTO {
 
+	@NotNull
+    @JsonProperty("id")
+    private Integer id;
+	
 	@NotBlank
-    @JsonProperty("carrera")
-    private String carrera;
+    @JsonProperty("nombre")
+    private String nombre;
 	
 }

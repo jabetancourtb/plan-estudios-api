@@ -17,9 +17,16 @@ public class CarreraServiceImpl implements CarreraService {
 	
 	
 	@Override
-	public Page<Carrera> findCarrerasByNameAndWithPaginationAndSorting(String nombre, Integer page, Integer pageSize, boolean asc)
+	public Page<Carrera> findCarrerasWithPaginationAndSorting(Integer page, Integer pageSize, String field, boolean asc)
 			throws Exception {
-		return carreraRepository.findCarrerasByNameAndWithPaginationAndSorting(nombre, page, pageSize, asc);
+		return carreraRepository.findCarrerasWithPaginationAndSorting(page, pageSize, field, asc);
+	}
+	
+	
+	@Override
+	public Page<Carrera> findCarrerasByNameAndWithPaginationAndSorting(String nombre, Integer page, Integer pageSize, String field, boolean asc)
+			throws Exception {
+		return carreraRepository.findCarrerasByNameAndWithPaginationAndSorting(nombre, page, pageSize, field, asc);
 	}
 
 }
