@@ -18,10 +18,7 @@ import com.udistrital.constants.ExceptionMessageConstants;
 import com.udistrital.constants.URIConstants;
 import com.udistrital.dto.APIExceptionResponseDTO;
 import com.udistrital.dto.APIResponseDTO;
-import com.udistrital.dto.AreaFormacionDTO;
 import com.udistrital.dto.AsignaturaDTO;
-import com.udistrital.dto.CampoFormacionDTO;
-import com.udistrital.dto.SemestreDTO;
 import com.udistrital.entity.Asignatura;
 import com.udistrital.enumeration.ExceptionType;
 import com.udistrital.exception.APIException;
@@ -39,7 +36,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping
 @Tag(name = "Asignatura", description = "Api que contiene los servicios para las asignaturas.")
-//@SecurityRequirement(name = SwaggerConstants.BEARER_AUTHENTICATION)
 public class AsignaturaController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AsignaturaController.class);
@@ -121,27 +117,27 @@ public class AsignaturaController {
 	public ResponseEntity<?> findAsignaturasWithPaginationAndSorting(
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
+			@RequestParam(defaultValue = "codigo", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturaesSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturaesEntity.getContent());
+			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturaesSimpleDTO.isEmpty()) {
+			if(asignaturasSimpleDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(asignaturaesSimpleDTO)
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturasSimpleDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -185,27 +181,27 @@ public class AsignaturaController {
 			@PathVariable String carrera, 
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
+			@RequestParam(defaultValue = "codigo", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAsignaturasByCarreraAndWithPaginationAndSorting(carrera, page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByCarreraAndWithPaginationAndSorting(carrera, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturaesSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturaesEntity.getContent());
+			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturaesSimpleDTO.isEmpty()) {
+			if(asignaturasSimpleDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(asignaturaesSimpleDTO)
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturasSimpleDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -249,27 +245,27 @@ public class AsignaturaController {
 			@PathVariable String campoFormacion, 
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
+			@RequestParam(defaultValue = "codigo", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturaesSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturaesEntity.getContent());
+			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturaesSimpleDTO.isEmpty()) {
+			if(asignaturasSimpleDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(asignaturaesSimpleDTO)
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturasSimpleDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -313,27 +309,27 @@ public class AsignaturaController {
 			@PathVariable String areaFormacion, 
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
+			@RequestParam(defaultValue = "codigo", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturaesSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturaesEntity.getContent());
+			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturaesSimpleDTO.isEmpty()) {
+			if(asignaturasSimpleDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(asignaturaesSimpleDTO)
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturasSimpleDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -377,27 +373,27 @@ public class AsignaturaController {
 			@PathVariable Integer semestre, 
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
+			@RequestParam(defaultValue = "codigo", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturaesSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturaesEntity.getContent());
+			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturaesSimpleDTO.isEmpty()) {
+			if(asignaturasSimpleDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(asignaturaesSimpleDTO)
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturasSimpleDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -419,135 +415,6 @@ public class AsignaturaController {
 	// FIN ASIGNATURAS POR SEMESTRE
 	
 	
-	
-	
-	
-	// INICIO CAMPOS DE FORMACIÓN
-	@Operation(summary = "Buscar campos de formación")
-	@ApiResponses(value = {
-		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
-        @ApiResponse(responseCode = "200", description = "Successful operation", 
-        		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIResponseDTO.class)) }
-        ),
-        @ApiResponse(responseCode = "400", description = "Bad request", 
-        		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
-        ),
-        @ApiResponse(responseCode = "500", description = "Internal server error", 
-		        content = { @Content(mediaType = "application/json", 
-			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
-        ) 
-    })
-	@GetMapping(URIConstants.CAMPOS_FORMACION)
-	public ResponseEntity<?> findCamposFormacionAndWithPaginationAndSorting(
-			@RequestParam(defaultValue = "1") Integer page, 
-			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
-			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
-		try {
-			page = page - 1;
-			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findCamposFormacionAndWithPaginationAndSorting(page, pageSize, field, asc);
-			
-			List<CampoFormacionDTO> campoFormacionListDTO = asignaturaMapper.campoFormacionListToCampoFormacionDTOList(asignaturaesEntity.getContent());
-			
-			HttpStatus httpStatus = HttpStatus.OK;
-			
-			if(campoFormacionListDTO.isEmpty()) {
-				httpStatus = HttpStatus.NO_CONTENT;
-			}
-
-			return new ResponseEntity<>(
-					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(campoFormacionListDTO)
-					.build(), 
-					httpStatus);	
-		}
-		catch(Exception exception) {
-			LOGGER.error(exception.getMessage());
-			
-			APIExceptionResponseDTO apiExceptionResponse = APIExceptionResponseDTO.builder()
-					.type(ExceptionType.SERVER_EXCEPTION.getValue())
-					.message(ExceptionMessageConstants.INTERNAL_SERVER_ERROR)
-					.exceptionClass(Exception.class.toString())
-					.httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-					.build();
-			
-			throw new APIException(apiExceptionResponse, 
-					apiExceptionResponse.getHttpStatus().value(),
-					exception);
-		}
-	}
-	// FIN CAMPOS DE FORMACIÓN
-	
-	
-	// INICIO ÁREAS DE FORMACIÓN
-	@Operation(summary = "Buscar áreas de formación")
-	@ApiResponses(value = {
-		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
-        @ApiResponse(responseCode = "200", description = "Successful operation", 
-        		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIResponseDTO.class)) }
-        ),
-        @ApiResponse(responseCode = "400", description = "Bad request", 
-        		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
-        ),
-        @ApiResponse(responseCode = "500", description = "Internal server error", 
-		        content = { @Content(mediaType = "application/json", 
-			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
-        ) 
-    })
-	@GetMapping(URIConstants.AREAS_FORMACION)
-	public ResponseEntity<?> findAreasFormacionAndWithPaginationAndSorting(
-			@RequestParam(defaultValue = "1") Integer page, 
-			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
-			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
-		try {
-			page = page - 1;
-			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findAreasFormacionAndWithPaginationAndSorting(page, pageSize, field, asc);
-			
-			List<AreaFormacionDTO> areaFormacionListDTO = asignaturaMapper.areaFormacionListToAreaFormacionDTOList(asignaturaesEntity.getContent());
-			
-			HttpStatus httpStatus = HttpStatus.OK;
-			
-			if(areaFormacionListDTO.isEmpty()) {
-				httpStatus = HttpStatus.NO_CONTENT;
-			}
-
-			return new ResponseEntity<>(
-					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(areaFormacionListDTO)
-					.build(), 
-					httpStatus);	
-		}
-		catch(Exception exception) {
-			LOGGER.error(exception.getMessage());
-			
-			APIExceptionResponseDTO apiExceptionResponse = APIExceptionResponseDTO.builder()
-					.type(ExceptionType.SERVER_EXCEPTION.getValue())
-					.message(ExceptionMessageConstants.INTERNAL_SERVER_ERROR)
-					.exceptionClass(Exception.class.toString())
-					.httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-					.build();
-			
-			throw new APIException(apiExceptionResponse, 
-					apiExceptionResponse.getHttpStatus().value(),
-					exception);
-		}
-	}
-	// FIN ÁREAS DE FORMACIÓN
-	
-	
 	// INICIO SEMESTRES
 	@Operation(summary = "Buscar semestres")
 	@ApiResponses(value = {
@@ -567,29 +434,23 @@ public class AsignaturaController {
     })
 	@GetMapping(URIConstants.SEMESTRES)
 	public ResponseEntity<?> findSemestresAndWithPaginationAndSorting(
-			@RequestParam(defaultValue = "1") Integer page, 
-			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "name", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
-			page = page - 1;
-			
-			Page<Asignatura> asignaturaesEntity = asignaturaService.findSemestresAndWithPaginationAndSorting(page, pageSize, field, asc);
-			
-			List<SemestreDTO> semestreListDTO = asignaturaMapper.semestreListToSemestreDTOList(asignaturaesEntity.getContent());
-			
+
+			Page<Integer> semestres = asignaturaService.findSemestresWithPaginationAndSorting(asc);
+						
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(semestreListDTO.isEmpty()) {
+			if(semestres.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
-					.content(semestreListDTO)
+					.recordCountPerPage(semestres.getSize())
+					.totalRecordCount(semestres.getTotalElements())
+					.totalPages(semestres.getTotalPages())
+					.content(semestres.getContent())
 					.build(), 
 					httpStatus);	
 		}

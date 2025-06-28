@@ -113,45 +113,16 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 	}
 	
 	
-	
-	// CAMPOS DE FORMACIÓN
-	@Override
-	public Page<Asignatura> findCamposFormacionAndWithPaginationAndSorting(Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
-		
-		if(!asc) {
-			sorting = Sort.by(field).descending();
-		}
-
-		return asignaturaJpaRepository.findCamposFormacionAndWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
-	}
-	
-	
-	// ÁREAS DE FORMACIÓN
-	@Override
-	public Page<Asignatura> findAreasFormacionAndWithPaginationAndSorting(Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
-		
-		if(!asc) {
-			sorting = Sort.by(field).descending();
-		}
-
-		return asignaturaJpaRepository.findAreasFormacionAndWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
-	}
-	
 	// SEMESTRES
 	@Override
-	public Page<Asignatura> findSemestresAndWithPaginationAndSorting(Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
+	public Page<Integer> findSemestresWithPaginationAndSorting(boolean asc) throws Exception {
+		Sort sorting = Sort.by("semestre");
 		
 		if(!asc) {
-			sorting = Sort.by(field).descending();
+			sorting = Sort.by("semestre").descending();
 		}
 
-		return asignaturaJpaRepository.findSemestresAndWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
+		return asignaturaJpaRepository.findSemestresWithPaginationAndSorting(PageRequest.of(0, 100).withSort(sorting));
 	}
 
 }
