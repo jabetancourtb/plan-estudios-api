@@ -79,4 +79,28 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 		return asignaturaRepository.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc);
 	}
 
+
+	// CAMPOS DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findCamposFormacionAndWithPaginationAndSorting(Integer page, Integer pageSize, String field,
+			boolean asc) throws Exception {
+		return asignaturaRepository.findCamposFormacionAndWithPaginationAndSorting(page, pageSize, field, asc);
+	}
+
+
+	// ÁREAS DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findAreasFormacionAndWithPaginationAndSorting(Integer page, Integer pageSize, String field,
+			boolean asc) throws Exception {
+		return asignaturaRepository.findAreasFormacionAndWithPaginationAndSorting(page, pageSize, field, asc);
+	}
+
+
+	// SEMESTRES
+	@Override
+	public Page<Asignatura> findSemestresAndWithPaginationAndSorting(Integer page, Integer pageSize, String field,
+			boolean asc) throws Exception {
+		return asignaturaRepository.findSemestresAndWithPaginationAndSorting(page, pageSize, field, asc);
+	}
+
 }

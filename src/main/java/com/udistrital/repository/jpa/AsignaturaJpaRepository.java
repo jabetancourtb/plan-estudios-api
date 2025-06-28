@@ -22,5 +22,15 @@ public interface AsignaturaJpaRepository extends JpaRepository<Asignatura, Integ
 	
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.semestre_asignatura = :semestre", nativeQuery = true)
 	Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(@Param("semestre") Integer semestre, PageRequest pageRequest) throws Exception;
+	
+		
+	@Query(value = "SELECT a.campo_formacion FROM res_asignatura a GROUP BY campo_formacion", nativeQuery = true)
+	Page<Asignatura> findCamposFormacionAndWithPaginationAndSorting(PageRequest pageRequest) throws Exception;
+	
+	@Query(value = "SELECT a.area_formacion FROM res_asignatura a GROUP BY area_formacion", nativeQuery = true)
+	Page<Asignatura> findAreasFormacionAndWithPaginationAndSorting(PageRequest pageRequest) throws Exception;
+	
+	@Query(value = "SELECT a.semestre_asignatura FROM res_asignatura a GROUP BY semestre_asignatura", nativeQuery = true)
+	Page<Asignatura> findSemestresAndWithPaginationAndSorting(PageRequest pageRequest) throws Exception;
 
 }

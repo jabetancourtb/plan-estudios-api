@@ -31,4 +31,15 @@ public interface AsignaturaRepository {
 	// ASIGNATURAS POR SEMESTRE
 	Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(Integer semestre, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
 	
+	
+	
+	// CAMPOS DE FORMACIÓN
+	Page<Asignatura> findCamposFormacionAndWithPaginationAndSorting(Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+	
+	// ÁREAS DE FORMACIÓN
+	Page<Asignatura> findAreasFormacionAndWithPaginationAndSorting(Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+	
+	// SEMESTRES
+	Page<Asignatura> findSemestresAndWithPaginationAndSorting(Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+	
 }
