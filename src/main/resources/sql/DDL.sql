@@ -1,11 +1,11 @@
-CREATE TABLE res_asignatura_prerequisito 
+CREATE TABLE res_asignatura_prerrequisito 
 (
-	id INT PRIMARY KEY,
-    materia INT NOT NULL,
-    prerequisito INT NOT NULL,
-    CONSTRAINT fk_materia FOREIGN KEY (materia)
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    asignatura_codigo  INT NOT NULL,
+    prerrequisito_codigo INT NOT NULL,
+    CONSTRAINT fk_materia FOREIGN KEY (asignatura_codigo)
         REFERENCES res_asignatura(codigo),
-    CONSTRAINT fk_prerequisito FOREIGN KEY (prerequisito)
+    CONSTRAINT fk_prerequisito FOREIGN KEY (prerrequisito_codigo)
         REFERENCES res_asignatura(codigo)
 );
 
