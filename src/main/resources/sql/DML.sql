@@ -273,9 +273,10 @@ UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y 
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '73');
 
 /* INSERT TABLA area_formacion */
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'1' AS id,
+1 AS id,
+1 AS  id_campo_formacion,
 'Matemáticas' AS nombre,
 '#87CEEB' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -283,9 +284,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Matemáticas'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'2' AS id,
+2 AS id,
+1 AS id_campo_formacion,
 'Física' AS nombre,
 '#DDA0DD' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -293,9 +295,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Física'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'3' AS id,
+3 AS id,
+2 AS id_campo_formacion,
 'Sociales' AS nombre,
 '#FFD700' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -303,9 +306,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Sociales'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'4' AS id,
+4 AS id,
+2 AS id_campo_formacion,
 'Lenguaje' AS nombre,
 '#90EE90' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -313,9 +317,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Lenguaje'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas) 
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas) 
 SELECT 
-'5' AS id,
+5 AS id,
+3 AS id_campo_formacion,
 'Programación' AS nombre,
 '#90EE90' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -323,9 +328,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Programación'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'6' AS id,
+6 AS id,
+4 AS id_campo_formacion,
 'Arquitectura de Computadores' AS nombre,
 '#DDA0DD' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -333,19 +339,21 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Arquitectura de Computadores'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'7' AS id,
-'Administración  de Sistemas' AS nombre,
+7 AS id,
+5 AS id_campo_formacion,
+'Administración de Sistemas' AS nombre,
 '#B0C4DE' AS color,
 count(a.area_formacion) as cantidad_asignaturas
 FROM res_asignatura a
-WHERE a.area_formacion = 'Administración  de Sistemas'
+WHERE a.area_formacion = 'Administración de Sistemas'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'8' AS id,
+8 AS id,
+4 AS id_campo_formacion,
 'Ingeniería de Software' AS nombre,
 '#87CEEB' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -353,9 +361,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Ingeniería de Software'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'9' AS id,
+9 AS id,
+3 AS id_campo_formacion,
 'Administración y Gestión de Redes' AS nombre,
 '#BA55D3' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -363,9 +372,10 @@ FROM res_asignatura a
 WHERE a.area_formacion = 'Administración y Gestión de Redes'
 GROUP BY a.area_formacion;
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'10' AS id,
+10 AS id,
+4 AS id_campo_formacion,
 'Sistemas de Comunicaciones' AS nombre,
 '#DDA0DD' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -384,9 +394,10 @@ WHERE a.area_formacion = 'Electiva'
 GROUP BY a.area_formacion;
 */
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'11' AS id,
+11 AS id,
+1 AS id_campo_formacion,
 'Electiva Ciencias Básicas' AS nombre,
 '#F28B82' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -396,9 +407,10 @@ WHERE
 AND
 (a.campo_formacion = 'Ciencias Básicas') or (a.campo_formacion = 'Ciencias Básicas');
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'12' AS id,
+12 AS id,
+2 AS id_campo_formacion,
 'Electiva Socio humanística' AS nombre,
 '#DAA520' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -408,9 +420,10 @@ WHERE
 AND
 (a.campo_formacion = 'Socio humanística') or (a.campo_formacion = 'Socio humanística');
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'13' AS id,
+13 AS id,
+3 AS id_campo_formacion,
 'Electiva Ingeniería Aplicada' AS nombre,
 '#4682B4' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -420,9 +433,10 @@ WHERE
 AND
 (a.campo_formacion = 'Ingeniería Aplicada') or (a.campo_formacion = 'Ingeniería Aplicada');
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'14' AS id,
+14 AS id,
+5 AS id_campo_formacion,
 'Electiva Económico Administrativa' AS nombre,
 '#FF7F50' AS color,
 count(a.area_formacion) as cantidad_asignaturas
@@ -432,9 +446,10 @@ WHERE
 AND
 (a.campo_formacion = 'Económico Administrativa ') or (a.campo_formacion = 'Económico Administrativa');
 
-INSERT INTO area_formacion(id, nombre, color_html, cantidad_asignaturas)
+INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html, cantidad_asignaturas)
 SELECT 
-'15' AS id,
+15 AS id,
+6 AS id_campo_formacion,
 'Otros' AS nombre,
 '#f2f2f2' AS color,
 count(a.area_formacion) as cantidad_asignaturas
