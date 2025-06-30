@@ -25,6 +25,13 @@ public class AreaFormacionServiceImpl implements AreaFormacionService {
 	
 	
 	@Override
+	public Page<AreaFormacion> findAreasFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page, Integer pageSize, String field, boolean asc)
+			throws Exception {
+		return areaFormacionRepository.findAreasFormacionByIdAndWithPaginationAndSorting(id, page, pageSize, field, asc);
+	}
+	
+	
+	@Override
 	public Page<AreaFormacion> findAreasFormacionByNameAndWithPaginationAndSorting(String nombre, Integer page, Integer pageSize, String field, boolean asc)
 			throws Exception {
 		return areaFormacionRepository.findAreasFormacionByNameAndWithPaginationAndSorting(nombre, page, pageSize, field, asc);
@@ -32,9 +39,9 @@ public class AreaFormacionServiceImpl implements AreaFormacionService {
 
 
 	@Override
-	public Page<AreaFormacion> findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(Integer idCampoFormacion,
+	public Page<AreaFormacion> findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(Integer idCampoFormacion,
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return areaFormacionRepository.findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, page, pageSize, field, asc);
+		return areaFormacionRepository.findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, page, pageSize, field, asc);
 	}
 	
 }

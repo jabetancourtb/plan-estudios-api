@@ -27,7 +27,20 @@ public class AreaFormacionRepositoryImpl implements AreaFormacionRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return areaFormacionJpaRepository.findAll(PageRequest.of(page, pageSize).withSort(sorting));
+		return areaFormacionJpaRepository.findAreasFormacionWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
+	}
+	
+	
+	@Override
+	public Page<AreaFormacion> findAreasFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page,
+			Integer pageSize, String field, boolean asc) throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return areaFormacionJpaRepository.findAreasFormacionByIdAndWithPaginationAndSorting(id, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 	
@@ -45,7 +58,7 @@ public class AreaFormacionRepositoryImpl implements AreaFormacionRepository {
 
 
 	@Override
-	public Page<AreaFormacion> findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(Integer idCampoFormacion,
+	public Page<AreaFormacion> findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(Integer idCampoFormacion,
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -53,7 +66,8 @@ public class AreaFormacionRepositoryImpl implements AreaFormacionRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return areaFormacionJpaRepository.findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, PageRequest.of(page, pageSize).withSort(sorting));
+		return areaFormacionJpaRepository.findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
+
 	
 }
