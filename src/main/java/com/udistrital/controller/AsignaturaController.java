@@ -76,9 +76,9 @@ public class AsignaturaController {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 			
-			AsignaturaDTO asignaturaSimpledDTO = asignaturaMapper.asignaturaToAsignaturaDTO(asignaturaEntity);
+			AsignaturaDTO asignaturaDTO = asignaturaMapper.asignaturaToAsignaturaDTO(asignaturaEntity);
 				
-			return new ResponseEntity<>(asignaturaSimpledDTO, httpStatus);	
+			return new ResponseEntity<>(asignaturaDTO, httpStatus);	
 		}
 		catch(Exception exception) {
 			LOGGER.error(exception.getMessage());
@@ -124,11 +124,11 @@ public class AsignaturaController {
 			
 			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturasSimpleDTO.isEmpty()) {
+			if(asignaturaDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
@@ -137,7 +137,7 @@ public class AsignaturaController {
 					.recordCountPerPage(asignaturasEntity.getSize())
 					.totalRecordCount(asignaturasEntity.getTotalElements())
 					.totalPages(asignaturasEntity.getTotalPages())
-					.content(asignaturasSimpleDTO)
+					.content(asignaturaDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -188,11 +188,11 @@ public class AsignaturaController {
 			
 			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByCarreraAndWithPaginationAndSorting(carrera, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturasSimpleDTO.isEmpty()) {
+			if(asignaturaDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
@@ -201,7 +201,7 @@ public class AsignaturaController {
 					.recordCountPerPage(asignaturasEntity.getSize())
 					.totalRecordCount(asignaturasEntity.getTotalElements())
 					.totalPages(asignaturasEntity.getTotalPages())
-					.content(asignaturasSimpleDTO)
+					.content(asignaturaDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -252,11 +252,11 @@ public class AsignaturaController {
 			
 			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturasSimpleDTO.isEmpty()) {
+			if(asignaturaDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
@@ -265,7 +265,7 @@ public class AsignaturaController {
 					.recordCountPerPage(asignaturasEntity.getSize())
 					.totalRecordCount(asignaturasEntity.getTotalElements())
 					.totalPages(asignaturasEntity.getTotalPages())
-					.content(asignaturasSimpleDTO)
+					.content(asignaturaDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -316,11 +316,11 @@ public class AsignaturaController {
 			
 			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturasSimpleDTO.isEmpty()) {
+			if(asignaturaDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
@@ -329,7 +329,7 @@ public class AsignaturaController {
 					.recordCountPerPage(asignaturasEntity.getSize())
 					.totalRecordCount(asignaturasEntity.getTotalElements())
 					.totalPages(asignaturasEntity.getTotalPages())
-					.content(asignaturasSimpleDTO)
+					.content(asignaturaDTO)
 					.build(), 
 					httpStatus);	
 		}
@@ -380,11 +380,11 @@ public class AsignaturaController {
 			
 			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc);
 			
-			List<AsignaturaDTO> asignaturasSimpleDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(asignaturasSimpleDTO.isEmpty()) {
+			if(asignaturaDTO.isEmpty()) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
@@ -393,7 +393,7 @@ public class AsignaturaController {
 					.recordCountPerPage(asignaturasEntity.getSize())
 					.totalRecordCount(asignaturasEntity.getTotalElements())
 					.totalPages(asignaturasEntity.getTotalPages())
-					.content(asignaturasSimpleDTO)
+					.content(asignaturaDTO)
 					.build(), 
 					httpStatus);	
 		}
