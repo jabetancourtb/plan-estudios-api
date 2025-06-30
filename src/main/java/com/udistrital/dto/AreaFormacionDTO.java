@@ -18,6 +18,11 @@ public class AreaFormacionDTO {
     @JsonProperty("id")
     private Integer id;
 	
+	@NotNull
+    @JsonProperty("idCampoFormacion")
+    private Integer idCampoFormacion;
+	
+	
 	@NotBlank
     @JsonProperty("nombre")
     private String nombre;
