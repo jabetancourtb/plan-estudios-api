@@ -32,55 +32,55 @@ public class Asignatura implements Serializable {
 	@Column(name = "carrera", nullable = false, length = 60)
     private String carrera;
 
-    @Column(name = "semestre_asignatura", nullable = false)
+    @Column(name = "semestre_asignatura", nullable = true)
     private Integer semestreAsignatura;
 
-    @Column(name = "codigo_condor", nullable = false)
+    @Column(name = "codigo_condor", nullable = true)
     private Integer codigoCondor;
 
-    @Column(name = "campo_formacion", nullable = false, length = 30)
+    @Column(name = "campo_formacion", nullable = true, length = 30)
     private String campoFormacion;
 
-    @Column(name = "area_formacion", nullable = false, length = 45)
+    @Column(name = "area_formacion", nullable = true, length = 45)
     private String areaFormacion;
 
-    @Column(name = "Espacio_Academico", nullable = false, length = 40)
+    @Column(name = "Espacio_Academico", nullable = true, length = 40)
     private String espacioAcademico;
 
-    @Column(name = "Tipo", nullable = false, length = 40)
+    @Column(name = "Tipo", nullable = true, length = 40)
     private String tipo;
 
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = true, length = 100)
     private String nombre;
 
-    @Column(name = "numero_creditos", nullable = false)
+    @Column(name = "numero_creditos", nullable = true)
     private Integer numeroCreditos;
 
-    @Column(name = "HTD", nullable = false)
+    @Column(name = "HTD", nullable = true)
     private Integer htd;
 
-    @Column(name = "HTC", nullable = false)
+    @Column(name = "HTC", nullable = true)
     private Integer htc;
 
-    @Column(name = "HTA", nullable = false)
+    @Column(name = "HTA", nullable = true)
     private Integer hta;
 
-    @Column(name = "clasificacion_condor", nullable = false, length = 30)
+    @Column(name = "clasificacion_condor", nullable = true, length = 30)
     private String clasificacionCondor;
 
-    @Column(name = "clasificacion_espacio", nullable = false)
+    @Column(name = "clasificacion_espacio", nullable = true)
     private Integer clasificacionEspacio;
 
-    @Column(name = "Obligatorio_Basico", nullable = false, length = 7)
+    @Column(name = "Obligatorio_Basico", nullable = true, length = 7)
     private String obligatorioBasico;
 
-    @Column(name = "Obligatorio_Complementario", nullable = false, length = 7)
+    @Column(name = "Obligatorio_Complementario", nullable = true, length = 7)
     private String obligatorioComplementario;
 
-    @Column(name = "ElectivoIntrinseco", nullable = false, length = 7)
+    @Column(name = "ElectivoIntrinseco", nullable = true, length = 7)
     private String electivoIntrinseco;
 
-    @Column(name = "ElectivoExtrinseco", nullable = false, length = 7)
+    @Column(name = "ElectivoExtrinseco", nullable = true, length = 7)
     private String electivoExtrinseco;
 
     @Column(name = "justificacion", length = 5000)
