@@ -73,9 +73,9 @@ public class AreaFormacionController {
 		try {
 			page = page - 1;
 			
-			Page<AreaFormacion> asignaturaesEntity = areaFormacionService.findAreasFormacionWithPaginationAndSorting(page, pageSize, field, asc);
+			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionWithPaginationAndSorting(page, pageSize, field, asc);
 			
-			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(asignaturaesEntity.getContent());
+			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
@@ -85,9 +85,9 @@ public class AreaFormacionController {
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
+					.recordCountPerPage(areaFormacionListEntity.getSize())
+					.totalRecordCount(areaFormacionListEntity.getTotalElements())
+					.totalPages(areaFormacionListEntity.getTotalPages())
 					.content(areaFormacionListDTO)
 					.build(), 
 					httpStatus);	
@@ -135,9 +135,9 @@ public class AreaFormacionController {
 		try {
 			page = page - 1;
 			
-			Page<AreaFormacion> asignaturaesEntity = areaFormacionService.findAreasFormacionByNameAndWithPaginationAndSorting(name, page, pageSize, field, asc);
+			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionByNameAndWithPaginationAndSorting(name, page, pageSize, field, asc);
 			
-			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(asignaturaesEntity.getContent());
+			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
@@ -147,9 +147,71 @@ public class AreaFormacionController {
 
 			return new ResponseEntity<>(
 					APIResponseDTO.builder()
-					.recordCountPerPage(asignaturaesEntity.getSize())
-					.totalRecordCount(asignaturaesEntity.getTotalElements())
-					.totalPages(asignaturaesEntity.getTotalPages())
+					.recordCountPerPage(areaFormacionListEntity.getSize())
+					.totalRecordCount(areaFormacionListEntity.getTotalElements())
+					.totalPages(areaFormacionListEntity.getTotalPages())
+					.content(areaFormacionListDTO)
+					.build(), 
+					httpStatus);	
+		}
+		catch(Exception exception) {
+			LOGGER.error(exception.getMessage());
+			
+			APIExceptionResponseDTO apiExceptionResponse = APIExceptionResponseDTO.builder()
+					.type(ExceptionType.SERVER_EXCEPTION.getValue())
+					.message(ExceptionMessageConstants.INTERNAL_SERVER_ERROR)
+					.exceptionClass(Exception.class.toString())
+					.httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+					.build();
+			
+			throw new APIException(apiExceptionResponse, 
+					apiExceptionResponse.getHttpStatus().value(),
+					exception);
+		}
+	}
+	
+	
+	@Operation(summary = "Buscar áreas de formaciones por id código de formación")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
+        @ApiResponse(responseCode = "200", description = "Successful operation", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "400", description = "Bad request", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "500", description = "Internal server error", 
+		        content = { @Content(mediaType = "application/json", 
+			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ) 
+    })
+	@GetMapping(URIConstants.CAMPOS_FORMACION+"/{idCampoFormacion}"+URIConstants.AREAS_FORMACION)
+	public ResponseEntity<?> findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(
+			@PathVariable Integer idCampoFormacion,
+			@RequestParam(defaultValue = "1") Integer page, 
+			@RequestParam(defaultValue = "10") Integer pageSize, 
+			@RequestParam(defaultValue = "id", required = false) String field,
+			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
+		try {
+			page = page - 1;
+			
+			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionByidCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, page, pageSize, field, asc);
+			
+			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
+			
+			HttpStatus httpStatus = HttpStatus.OK;
+			
+			if(areaFormacionListDTO.isEmpty()) {
+				httpStatus = HttpStatus.NO_CONTENT;
+			}
+
+			return new ResponseEntity<>(
+					APIResponseDTO.builder()
+					.recordCountPerPage(areaFormacionListEntity.getSize())
+					.totalRecordCount(areaFormacionListEntity.getTotalElements())
+					.totalPages(areaFormacionListEntity.getTotalPages())
 					.content(areaFormacionListDTO)
 					.build(), 
 					httpStatus);	
