@@ -28,7 +28,10 @@ CREATE TABLE campo_formacion
 CREATE TABLE area_formacion 
 (
 	id INT PRIMARY KEY,
+    id_campo_formacion INT NOT NULL,
     nombre VARCHAR(45) NOT NULL,
     color_html VARCHAR(50) NOT NULL,
-	cantidad_asignaturas INT
+	cantidad_asignaturas INT,
+    CONSTRAINT fk_id_campo_formacion FOREIGN KEY (id_campo_formacion)
+        REFERENCES campo_formacion(id)
 );
