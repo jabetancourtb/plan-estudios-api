@@ -54,6 +54,7 @@ public class SecurityConfiguration {
 		URIConstants.CAMPOS_FORMACION+"/**",
 		URIConstants.AREAS_FORMACION+"/**",
 		URIConstants.SEMESTRES+"/**",
+		URIConstants.PRERREQUISITOS+"/**",
 		//actuator/**
 	};
 	
