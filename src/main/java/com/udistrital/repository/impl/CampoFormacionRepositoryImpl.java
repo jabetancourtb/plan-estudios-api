@@ -26,7 +26,20 @@ public class CampoFormacionRepositoryImpl implements CampoFormacionRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return campoFormacionJpaRepository.findAll(PageRequest.of(page, pageSize).withSort(sorting));
+		return campoFormacionJpaRepository.findCamposFormacionWithPaginationAndSorting(PageRequest.of(page, pageSize, sorting));
+	}
+	
+	
+	@Override
+	public Page<CampoFormacion> findCamposFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page,
+			Integer pageSize, String field, boolean asc) throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return campoFormacionJpaRepository.findCamposFormacionByIdAndWithPaginationAndSorting(id, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 	
 	
@@ -41,5 +54,8 @@ public class CampoFormacionRepositoryImpl implements CampoFormacionRepository {
 
 		return campoFormacionJpaRepository.findCamposFormacionByNameAndWithPaginationAndSorting(nombre, PageRequest.of(page, pageSize).withSort(sorting));
 	}
+
+
+
 	
 }

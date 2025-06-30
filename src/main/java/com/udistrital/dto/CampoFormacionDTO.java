@@ -27,6 +27,10 @@ public class CampoFormacionDTO {
     private String colorHtml;
 	
 	@NotNull
+    @JsonProperty("cantidadAreasFormacion")
+    private Integer cantidadAreasFormacion;
+	
+	@NotNull
     @JsonProperty("cantidadAsignaturas")
     private Integer cantidadAsignaturas;
 	

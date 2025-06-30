@@ -41,6 +41,9 @@ public class CampoFormacion {
 	@Column(name = "color_html", nullable = true, length = 60)
     private String colorHtml;
 	
+	@Column(name = "cantidad_areas_formacion", nullable = true)
+    private Integer cantidadAreasFormacion;
+	
 	@Column(name = "cantidad_asignaturas", nullable = true)
     private Integer cantidadAsignaturas;
 	
