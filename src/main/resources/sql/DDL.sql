@@ -21,12 +21,14 @@ CREATE TABLE campo_formacion
 (
 	id INT PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
-    color_html VARCHAR(50) NOT NULL
+    color_html VARCHAR(50) NOT NULL,
+    cantidad_asignaturas INT
 );
 
 CREATE TABLE area_formacion 
 (
 	id INT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
-    color_html VARCHAR(50) NOT NULL
+    color_html VARCHAR(50) NOT NULL,
+	cantidad_asignaturas INT
 );
