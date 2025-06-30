@@ -22,4 +22,12 @@ public class AreaFormacionDTO {
     @JsonProperty("nombre")
     private String nombre;
 	
+	@NotBlank
+    @JsonProperty("colorHtml")
+    private String colorHtml;
+	
+	@NotNull
+    @JsonProperty("cantidadAsignaturas")
+    private Integer cantidadAsignaturas;
+	
 }

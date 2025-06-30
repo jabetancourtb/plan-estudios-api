@@ -27,4 +27,10 @@ public class AreaFormacion {
 	@Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 	
+	@Column(name = "color_html", nullable = true, length = 60)
+    private String colorHtml;
+	
+	@Column(name = "cantidad_asignaturas", nullable = true)
+    private Integer cantidadAsignaturas;
+	
 }
