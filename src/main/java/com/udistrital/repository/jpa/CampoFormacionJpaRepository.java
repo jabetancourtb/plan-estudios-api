@@ -10,8 +10,8 @@ import com.udistrital.entity.CampoFormacion;
 
 
 public interface CampoFormacionJpaRepository extends JpaRepository<CampoFormacion, Integer> {
-
-	@Query(value = "SELECT cf.id, cf.nombre FROM campo_formacion cf WHERE cf.nombre LIKE CONCAT('%', :nombre, '%')", nativeQuery = true)
+	
+	@Query(value = "SELECT cf.* FROM campo_formacion cf WHERE cf.nombre LIKE CONCAT('%', :nombre, '%')", nativeQuery = true)
 	Page<CampoFormacion> findCamposFormacionByNameAndWithPaginationAndSorting(@Param("nombre") String nombre, PageRequest pageRequest) throws Exception;
 	
 }
