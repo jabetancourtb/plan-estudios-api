@@ -45,10 +45,52 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 	public Page<Asignatura> findAsignaturasWithPaginationAndSorting(Integer page, Integer pageSize, String field,
 			boolean asc) throws Exception {
 		
-		Page<Asignatura> response = asignaturaRepository.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
+		return validateFields(asignaturaRepository.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc));
+	}
+
+
+	// INICIO ASIGNATURAS POR CARRERA
+	@Override
+	public Page<Asignatura> findAsignaturasByCarreraAndWithPaginationAndSorting(String carrera, Integer page,
+			Integer pageSize, String field, boolean asc) throws Exception {
+		return validateFields(asignaturaRepository.findAsignaturasByCarreraAndWithPaginationAndSorting(carrera, page, pageSize, field, asc));
+	}
+
+
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(String campoFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		return validateFields(asignaturaRepository.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc));
+	}
+
+	
+	// ASIGNATURAS POR ÁREA DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(String areaFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc));
+	}
+
+	
+	// ASIGNATURAS POR SEMESTRE
+	@Override
+	public Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(Integer semestre, Integer page,
+			Integer pageSize, String field, boolean asc) throws Exception {
+		return validateFields(asignaturaRepository.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc));
+	}
+
+
+	// SEMESTRES
+	@Override
+	public Page<Integer> findSemestresWithPaginationAndSorting(boolean asc) throws Exception {
+		return asignaturaRepository.findSemestresWithPaginationAndSorting(asc);
+	}
+	
+	
+	private Page<Asignatura> validateFields(Page<Asignatura> asignaturasPerPage) {
 		
-		// TODO pasar a un método de conversión
-		List<Asignatura> asignaturas = response.getContent();
+		List<Asignatura> asignaturas = asignaturasPerPage.getContent();
 		
 		asignaturas.stream().forEach(a -> {
 			
@@ -73,46 +115,7 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 			}
 		});
 		
-		return asignaturaRepository.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
-	}
-
-
-	// INICIO ASIGNATURAS POR CARRERA
-	@Override
-	public Page<Asignatura> findAsignaturasByCarreraAndWithPaginationAndSorting(String carrera, Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		return asignaturaRepository.findAsignaturasByCarreraAndWithPaginationAndSorting(carrera, page, pageSize, field, asc);
-	}
-
-
-	// ASIGNATURAS POR CAMPO DE FORMACIÓN
-	@Override
-	public Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(String campoFormacion,
-			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return asignaturaRepository.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc);
-	}
-
-	
-	// ASIGNATURAS POR ÁREA DE FORMACIÓN
-	@Override
-	public Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(String areaFormacion,
-			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return asignaturaRepository.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
-	}
-
-	
-	// ASIGNATURAS POR SEMESTRE
-	@Override
-	public Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(Integer semestre, Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		return asignaturaRepository.findAsignaturasBySemestreAndWithPaginationAndSorting(semestre, page, pageSize, field, asc);
-	}
-
-
-	// SEMESTRES
-	@Override
-	public Page<Integer> findSemestresWithPaginationAndSorting(boolean asc) throws Exception {
-		return asignaturaRepository.findSemestresWithPaginationAndSorting(asc);
+		return asignaturasPerPage;
 	}
 
 }
