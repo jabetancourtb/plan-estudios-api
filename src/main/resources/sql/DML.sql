@@ -186,6 +186,13 @@ UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Ciencias Básicas
 UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Socio humanística' WHERE (`codigo` = '10');
 UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Socio humanística' WHERE (`codigo` = '37');
 UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Socio humanística' WHERE (`codigo` = '24');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '21');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '22');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '35');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '36');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '64');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '69');
+UPDATE `u_distrital`.`res_asignatura` SET `campo_formacion` = 'Económico Administrativa' WHERE (`codigo` = '93');
 
 /* INSERT TABLA campo_formacion */
 INSERT INTO campo_formacion(id, nombre, color_html) VALUES(1, 'Ciencias Básicas', '#87CEEB');
