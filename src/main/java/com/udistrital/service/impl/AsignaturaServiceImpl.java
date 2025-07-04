@@ -44,6 +44,35 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 	@Override
 	public Page<Asignatura> findAsignaturasWithPaginationAndSorting(Integer page, Integer pageSize, String field,
 			boolean asc) throws Exception {
+		
+		Page<Asignatura> response = asignaturaRepository.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
+		
+		// TODO pasar a un método de conversión
+		List<Asignatura> asignaturas = response.getContent();
+		
+		asignaturas.stream().forEach(a -> {
+			
+			if(a.getCampoFormacion().equals("") || a.getCampoFormacion() == null) {
+				a.setCampoFormacion("Otros");
+			}
+			
+			if(a.getCampoFormacion().equals("Ciencias Básicas") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
+				a.setAreaFormacion("Electiva Ciencias Básicas");
+			}
+			else if(a.getCampoFormacion().equals("Socio humanística") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
+				a.setAreaFormacion("Electiva Socio humanística");
+			}
+			else if(a.getCampoFormacion().equals("Ingeniería Aplicada") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
+				a.setAreaFormacion("Electiva Ingeniería Aplicada");
+			}
+			else if(a.getCampoFormacion().equals("Económico Administrativa") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
+				a.setAreaFormacion("Electiva Económico Administrativa");
+			}
+			else if(a.getAreaFormacion().equals("") || a.getAreaFormacion() == null) {
+				a.setAreaFormacion("Otros");
+			}
+		});
+		
 		return asignaturaRepository.findAsignaturasWithPaginationAndSorting(page, pageSize, field, asc);
 	}
 
