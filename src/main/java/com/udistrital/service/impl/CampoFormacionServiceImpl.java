@@ -24,9 +24,8 @@ public class CampoFormacionServiceImpl implements CampoFormacionService {
 	
 	
 	@Override
-	public Page<CampoFormacion> findCamposFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		return campoFormacionRepository.findCamposFormacionByIdAndWithPaginationAndSorting(id, page, pageSize, field, asc);
+	public CampoFormacion findCampoFormacionById(Integer id) throws Exception {
+		return campoFormacionRepository.findCampoFormacionById(id);
 	}
 	
 	

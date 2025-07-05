@@ -31,15 +31,8 @@ public class CampoFormacionRepositoryImpl implements CampoFormacionRepository {
 	
 	
 	@Override
-	public Page<CampoFormacion> findCamposFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
-		
-		if(!asc) {
-			sorting = Sort.by(field).descending();
-		}
-
-		return campoFormacionJpaRepository.findCamposFormacionByIdAndWithPaginationAndSorting(id, PageRequest.of(page, pageSize).withSort(sorting));
+	public CampoFormacion findCampoFormacionById(Integer id) throws Exception {
+		return campoFormacionJpaRepository.findCampoFormacionById(id);
 	}
 	
 	

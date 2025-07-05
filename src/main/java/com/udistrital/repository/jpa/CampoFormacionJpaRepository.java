@@ -58,9 +58,8 @@ public interface CampoFormacionJpaRepository extends JpaRepository<CampoFormacio
 			+ " ) ra ON ra.campo_formacion = cf.nombre "
 			+ " WHERE cf.id = :id "
 			+ " GROUP BY cf.id, cf.nombre, cf.color_html", 
-			countQuery = "SELECT COUNT(*) FROM campo_formacion",
 			nativeQuery = true)
-	Page<CampoFormacion> findCamposFormacionByIdAndWithPaginationAndSorting(@Param("id") Integer id, PageRequest pageRequest) throws Exception;
+	CampoFormacion findCampoFormacionById(@Param("id") Integer id) throws Exception;
 	
 	
 	@Query(value = "SELECT "

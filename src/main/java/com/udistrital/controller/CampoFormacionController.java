@@ -107,12 +107,12 @@ public class CampoFormacionController {
 	}		
 	
 	
-	@Operation(summary = "Buscar campos de formaciones por id")
+	@Operation(summary = "Buscar campo de formación por id")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
         		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIResponseDTO.class)) }
+        	    schema = @Schema(implementation = CampoFormacionDTO.class)) }
         ),
         @ApiResponse(responseCode = "400", description = "Bad request", 
         		content = { @Content(mediaType = "application/json", 
@@ -124,33 +124,20 @@ public class CampoFormacionController {
         ) 
     })
 	@GetMapping(URIConstants.CAMPOS_FORMACION+"/{id}")
-	public ResponseEntity<?> findCampoFormacionsByIdAndWithPaginationAndSorting(
-			@PathVariable Integer id,
-			@RequestParam(defaultValue = "1") Integer page, 
-			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "id", required = false) String field,
-			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
+	public ResponseEntity<?> findCampoFormacionsByIdAndWithPaginationAndSorting(@PathVariable Integer id) throws Exception {
 		try {
-			page = page - 1;
+
+			CampoFormacion campoFormacionEntity = campoFormacionService.findCampoFormacionById(id);
 			
-			Page<CampoFormacion> campoFormacionListEntity = campoFormacionService.findCamposFormacionByIdAndWithPaginationAndSorting(id, page, pageSize, field, asc);
-			
-			List<CampoFormacionDTO> campoFormacionListDTO = campoFormacionMapper.campoFormacionListToCampoFormacionDTOList(campoFormacionListEntity.getContent());
+			CampoFormacionDTO campoFormacionDTO = campoFormacionMapper.campoFormacionToCampoFormacionDTO(campoFormacionEntity);
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(campoFormacionListDTO.isEmpty()) {
+			if(campoFormacionDTO == null) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
-			return new ResponseEntity<>(
-					APIResponseDTO.builder()
-					.recordCountPerPage(campoFormacionListEntity.getSize())
-					.totalRecordCount(campoFormacionListEntity.getTotalElements())
-					.totalPages(campoFormacionListEntity.getTotalPages())
-					.content(campoFormacionListDTO)
-					.build(), 
-					httpStatus);	
+			return new ResponseEntity<>(campoFormacionDTO, httpStatus);	
 		}
 		catch(Exception exception) {
 			LOGGER.error(exception.getMessage());
