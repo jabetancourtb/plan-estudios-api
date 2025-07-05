@@ -25,9 +25,9 @@ public class AreaFormacionServiceImpl implements AreaFormacionService {
 	
 	
 	@Override
-	public Page<AreaFormacion> findAreasFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page, Integer pageSize, String field, boolean asc)
+	public AreaFormacion findAreaFormacionById(Integer id)
 			throws Exception {
-		return areaFormacionRepository.findAreasFormacionByIdAndWithPaginationAndSorting(id, page, pageSize, field, asc);
+		return areaFormacionRepository.findAreaFormacionById(id);
 	}
 	
 	

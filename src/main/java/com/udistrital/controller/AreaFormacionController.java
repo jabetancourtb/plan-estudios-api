@@ -109,12 +109,12 @@ public class AreaFormacionController {
 	}
 	
 	
-	@Operation(summary = "Buscar áreas de formaciones por id")
+	@Operation(summary = "Buscar área de formación por id")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
         		content = { @Content(mediaType = "application/json", 
-        	    schema = @Schema(implementation = APIResponseDTO.class)) }
+        	    schema = @Schema(implementation = AreaFormacionDTO.class)) }
         ),
         @ApiResponse(responseCode = "400", description = "Bad request", 
         		content = { @Content(mediaType = "application/json", 
@@ -126,33 +126,20 @@ public class AreaFormacionController {
         ) 
     })
 	@GetMapping(URIConstants.AREAS_FORMACION+"/{id}")
-	public ResponseEntity<?> findAreaFormacionsByIdAndWithPaginationAndSorting(
-			@PathVariable Integer id,
-			@RequestParam(defaultValue = "1") Integer page, 
-			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "id", required = false) String field,
-			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
+	public ResponseEntity<?> findAreaFormacionsByIdAndWithPaginationAndSorting(@PathVariable Integer id) throws Exception {
 		try {
-			page = page - 1;
 			
-			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionByIdAndWithPaginationAndSorting(id, page, pageSize, field, asc);
+			AreaFormacion areaFormacionEntity = areaFormacionService.findAreaFormacionById(id);
 			
-			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
+			AreaFormacionDTO areaFormacionDTO = areaFormacionMapper.areaFormacionToAreaFormacionDTO(areaFormacionEntity);
 			
 			HttpStatus httpStatus = HttpStatus.OK;
 			
-			if(areaFormacionListDTO.isEmpty()) {
+			if(areaFormacionDTO == null) {
 				httpStatus = HttpStatus.NO_CONTENT;
 			}
 
-			return new ResponseEntity<>(
-					APIResponseDTO.builder()
-					.recordCountPerPage(areaFormacionListEntity.getSize())
-					.totalRecordCount(areaFormacionListEntity.getTotalElements())
-					.totalPages(areaFormacionListEntity.getTotalPages())
-					.content(areaFormacionListDTO)
-					.build(), 
-					httpStatus);	
+			return new ResponseEntity<>(areaFormacionDTO, httpStatus);	
 		}
 		catch(Exception exception) {
 			LOGGER.error(exception.getMessage());

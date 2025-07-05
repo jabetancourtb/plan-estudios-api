@@ -56,10 +56,9 @@ public interface AreaFormacionJpaRepository extends JpaRepository<AreaFormacion,
 			+ "  FROM res_asignatura"
 			+ " ) ra ON ra.area_formacion = af.nombre"
 			+ " WHERE af.id = :id"
-			+ " GROUP BY af.id, af.nombre, af.color_html", 
-			countQuery = "SELECT COUNT(*) FROM area_formacion",
+			+ " GROUP BY af.id, af.nombre, af.color_html",
 			nativeQuery = true)
-	Page<AreaFormacion> findAreasFormacionByIdAndWithPaginationAndSorting(@Param("id") Integer id, PageRequest pageRequest) throws Exception;
+	AreaFormacion findAreaFormacionById(@Param("id") Integer id) throws Exception;
 
 	
 	@Query(value = " SELECT "

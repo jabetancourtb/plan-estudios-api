@@ -32,15 +32,8 @@ public class AreaFormacionRepositoryImpl implements AreaFormacionRepository {
 	
 	
 	@Override
-	public Page<AreaFormacion> findAreasFormacionByIdAndWithPaginationAndSorting(Integer id, Integer page,
-			Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
-		
-		if(!asc) {
-			sorting = Sort.by(field).descending();
-		}
-
-		return areaFormacionJpaRepository.findAreasFormacionByIdAndWithPaginationAndSorting(id, PageRequest.of(page, pageSize).withSort(sorting));
+	public AreaFormacion findAreaFormacionById(Integer id) throws Exception {
+		return areaFormacionJpaRepository.findAreaFormacionById(id);
 	}
 
 	
