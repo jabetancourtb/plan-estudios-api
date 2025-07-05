@@ -83,11 +83,11 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 
 		return asignaturaJpaRepository.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
-
-
+	
+	
 	// ASIGNATURAS POR ÁREA DE FORMACIÓN
 	@Override
-	public Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(String areaFormacion,
+	public Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(String areaFormacion,
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -95,7 +95,36 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return asignaturaJpaRepository.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
+		return asignaturaJpaRepository.findAsignaturasByAreaFormacionWithPaginationAndSorting(areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
+	}
+		
+
+
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return asignaturaJpaRepository.findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
+	}
+	
+	
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN ELECTIVAS
+	@Override
+	public Page<Asignatura> findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return asignaturaJpaRepository.findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 	
 	

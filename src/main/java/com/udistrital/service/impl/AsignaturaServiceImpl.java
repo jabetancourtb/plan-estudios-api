@@ -63,13 +63,29 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
 		return validateFields(asignaturaRepository.findAsignaturasByCampoFormacionAndWithPaginationAndSorting(campoFormacion, page, pageSize, field, asc));
 	}
+	
+	
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN
+	@Override
+	public Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(String areaFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc));
+	}
 
 	
-	// ASIGNATURAS POR ÁREA DE FORMACIÓN
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN
 	@Override
-	public Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(String areaFormacion,
+	public Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc));
+				
+		if(areaFormacion.equals("Electiva Ciencias Básicas") || 
+				areaFormacion.equals("Electiva Socio humanística")|| 
+				areaFormacion.equals("Electiva Ingeniería Aplicada") || 
+				areaFormacion.equals("Electiva Económico Administrativa")) {
+			return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, page, pageSize, field, asc));
+		}
+
+		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, page, pageSize, field, asc));
 	}
 
 	

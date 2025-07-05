@@ -314,7 +314,72 @@ public class AsignaturaController {
 		try {
 			page = page - 1;
 			
-			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByAreaFormacionAndWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByAreaFormacionWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc);
+			
+			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
+			
+			HttpStatus httpStatus = HttpStatus.OK;
+			
+			if(asignaturaDTO.isEmpty()) {
+				httpStatus = HttpStatus.NO_CONTENT;
+			}
+
+			return new ResponseEntity<>(
+					APIResponseDTO.builder()
+					.recordCountPerPage(asignaturasEntity.getSize())
+					.totalRecordCount(asignaturasEntity.getTotalElements())
+					.totalPages(asignaturasEntity.getTotalPages())
+					.content(asignaturaDTO)
+					.build(), 
+					httpStatus);	
+		}
+		catch(Exception exception) {
+			LOGGER.error(exception.getMessage());
+			
+			APIExceptionResponseDTO apiExceptionResponse = APIExceptionResponseDTO.builder()
+					.type(ExceptionType.SERVER_EXCEPTION.getValue())
+					.message(ExceptionMessageConstants.INTERNAL_SERVER_ERROR)
+					.exceptionClass(Exception.class.toString())
+					.httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+					.build();
+			
+			throw new APIException(apiExceptionResponse, 
+					apiExceptionResponse.getHttpStatus().value(),
+					exception);
+		}
+	}
+	// FIN ASIGNATURAS POR ÁREA DE FORMACIÓN
+
+	
+	// INICIO ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN
+	@Operation(summary = "Buscar asignaturas por área de formación")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
+        @ApiResponse(responseCode = "200", description = "Successful operation", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "400", description = "Bad request", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "500", description = "Internal server error", 
+		        content = { @Content(mediaType = "application/json", 
+			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ) 
+    })
+	@GetMapping(URIConstants.CAMPOS_FORMACION+"/{campoFormacion}"+URIConstants.AREAS_FORMACION+"/{areaFormacion}"+URIConstants.ASIGNATURAS)
+	public ResponseEntity<?> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(
+			@PathVariable String campoFormacion, 
+			@PathVariable String areaFormacion, 
+			@RequestParam(defaultValue = "1") Integer page, 
+			@RequestParam(defaultValue = "10") Integer pageSize, 
+			@RequestParam(defaultValue = "codigo", required = false) String field,
+			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
+		try {
+			page = page - 1;
+			
+			Page<Asignatura> asignaturasEntity = asignaturaService.findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, page, pageSize, field, asc);
 			
 			List<AsignaturaDTO> asignaturaDTO = asignaturaMapper.asignaturaListToAsignaturaDTOList(asignaturasEntity.getContent());
 			
@@ -350,7 +415,7 @@ public class AsignaturaController {
 	}
 	// FIN ASIGNATURAS POR ÁREA DE FORMACIÓN
 	
-	
+
 	// INICIO ASIGNATURAS POR SEMESTRE
 	@Operation(summary = "Buscar asignaturas por semestre")
 	@ApiResponses(value = {

@@ -18,7 +18,17 @@ public interface AsignaturaJpaRepository extends JpaRepository<Asignatura, Integ
 	Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, PageRequest pageRequest) throws Exception;
 	
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.area_formacion = :areaFormacion", nativeQuery = true)
-	Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(@Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
+	Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(@Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
+	
+	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.campo_formacion = :campoFormacion AND a.area_formacion = :areaFormacion", nativeQuery = true)
+	Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, @Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
+	
+	@Query(value = "SELECT a.* "
+			+ " FROM res_asignatura a "
+			+ " WHERE a.campo_formacion = :campoFormacion "
+			+ " AND "
+			+ " (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas') ", nativeQuery = true)
+	Page<Asignatura> findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, @Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
 	
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.semestre_asignatura = :semestre", nativeQuery = true)
 	Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(@Param("semestre") Integer semestre, PageRequest pageRequest) throws Exception;

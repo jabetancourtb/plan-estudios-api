@@ -26,7 +26,10 @@ public interface AsignaturaService {
 	Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(String campoFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
 	
 	// ASIGNATURAS POR ÁREA DE FORMACIÓN
-	Page<Asignatura> findAsignaturasByAreaFormacionAndWithPaginationAndSorting(String areaFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+	Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(String areaFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+		
+	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN
+	Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
 	
 	// ASIGNATURAS POR SEMESTRE
 	Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(Integer semestre, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
