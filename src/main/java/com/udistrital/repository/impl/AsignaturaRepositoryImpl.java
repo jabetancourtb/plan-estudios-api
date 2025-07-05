@@ -97,9 +97,8 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 
 		return asignaturaJpaRepository.findAsignaturasByAreaFormacionWithPaginationAndSorting(areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
-		
-
-
+	
+	
 	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN
 	@Override
 	public Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
@@ -113,21 +112,7 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 		return asignaturaJpaRepository.findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 	
-	
-	// ASIGNATURAS POR CAMPO DE FORMACIÓN Y ÁREA DE FORMACIÓN ELECTIVAS
-	@Override
-	public Page<Asignatura> findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
-			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		Sort sorting = Sort.by(field);
 		
-		if(!asc) {
-			sorting = Sort.by(field).descending();
-		}
-
-		return asignaturaJpaRepository.findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, PageRequest.of(page, pageSize).withSort(sorting));
-	}
-	
-	
 	// ASIGNATURAS POR SEMESTRE
 	@Override
 	public Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(Integer semestre, Integer page,

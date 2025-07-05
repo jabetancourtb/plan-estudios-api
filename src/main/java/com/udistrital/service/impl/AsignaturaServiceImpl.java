@@ -65,10 +65,10 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 	}
 	
 	
-	// ASIGNATURAS POR CAMPO DE FORMACIÓN
+	// ASIGNATURAS POR ÁREA DE FORMACIÓN
 	@Override
 	public Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(String areaFormacion,
-			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {		
 		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionWithPaginationAndSorting(areaFormacion, page, pageSize, field, asc));
 	}
 
@@ -77,14 +77,6 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 	@Override
 	public Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(String campoFormacion, String areaFormacion,
 			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-				
-		if(areaFormacion.equals("Electiva Ciencias Básicas") || 
-				areaFormacion.equals("Electiva Socio humanística")|| 
-				areaFormacion.equals("Electiva Ingeniería Aplicada") || 
-				areaFormacion.equals("Electiva Económico Administrativa")) {
-			return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, page, pageSize, field, asc));
-		}
-
 		return validateFields(asignaturaRepository.findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(campoFormacion, areaFormacion, page, pageSize, field, asc));
 	}
 

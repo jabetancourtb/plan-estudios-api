@@ -17,18 +17,37 @@ public interface AsignaturaJpaRepository extends JpaRepository<Asignatura, Integ
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.campo_formacion = :campoFormacion", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, PageRequest pageRequest) throws Exception;
 	
-	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.area_formacion = :areaFormacion", nativeQuery = true)
+	
+	@Query(value = " SELECT a.* "
+			+ " FROM res_asignatura a "
+			+ " WHERE "
+			+ " CASE "
+			+ "		WHEN (:areaFormacion = 'Electiva Ciencias Básicas') THEN (a.campo_formacion = 'Ciencias Básicas' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Socio humanística') THEN (a.campo_formacion = 'Socio humanística' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Ingeniería Aplicada') THEN (a.campo_formacion = 'Ingeniería Aplicada' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Económico Administrativa') THEN (a.campo_formacion = 'Económico Administrativa' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Otros') THEN (a.area_formacion = '') "
+			+ "		ELSE a.area_formacion LIKE CONCAT('%', :areaFormacion, '%') "
+			+ " END", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByAreaFormacionWithPaginationAndSorting(@Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
 	
-	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.campo_formacion = :campoFormacion AND a.area_formacion = :areaFormacion", nativeQuery = true)
+	
+	@Query(value = " SELECT a.* "
+			+ " FROM res_asignatura a "
+			+ " WHERE "
+			+ " a.campo_formacion LIKE CONCAT('%', :campoFormacion, '%') "
+			+ " AND "
+			+ " CASE "
+			+ "		WHEN (:areaFormacion = 'Electiva Ciencias Básicas') THEN (a.campo_formacion = 'Ciencias Básicas' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Socio humanística') THEN (a.campo_formacion = 'Socio humanística' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Ingeniería Aplicada') THEN (a.campo_formacion = 'Ingeniería Aplicada' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Electiva Económico Administrativa') THEN (a.campo_formacion = 'Económico Administrativa' AND (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas')) "
+			+ "		WHEN (:areaFormacion = 'Otros') THEN (a.area_formacion = '') "
+			+ "		ELSE a.area_formacion LIKE CONCAT('%', :areaFormacion, '%') "
+			+ " END", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByAreaFormacionAndCampoFormacionWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, @Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
 	
-	@Query(value = "SELECT a.* "
-			+ " FROM res_asignatura a "
-			+ " WHERE a.campo_formacion = :campoFormacion "
-			+ " AND "
-			+ " (a.area_formacion = 'Electiva' || a.area_formacion = 'Electivas') ", nativeQuery = true)
-	Page<Asignatura> findAsignaturasByAreaFormacionElectivasAndCampoFormacionWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, @Param("areaFormacion") String areaFormacion, PageRequest pageRequest) throws Exception;
+		
 	
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.semestre_asignatura = :semestre", nativeQuery = true)
 	Page<Asignatura> findAsignaturasBySemestreAndWithPaginationAndSorting(@Param("semestre") Integer semestre, PageRequest pageRequest) throws Exception;
