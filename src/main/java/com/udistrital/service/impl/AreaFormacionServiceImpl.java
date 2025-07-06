@@ -44,4 +44,11 @@ public class AreaFormacionServiceImpl implements AreaFormacionService {
 		return areaFormacionRepository.findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, page, pageSize, field, asc);
 	}
 	
+	
+	@Override
+	public Page<AreaFormacion> findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(String nombreCampoFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		return areaFormacionRepository.findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(nombreCampoFormacion, page, pageSize, field, asc);
+	}
+	
 }

@@ -220,7 +220,7 @@ public class AreaFormacionController {
 	}
 	
 	
-	@Operation(summary = "Buscar áreas de formaciones por id código de formación")
+	@Operation(summary = "Buscar áreas de formaciones por id de formación")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
@@ -247,6 +247,68 @@ public class AreaFormacionController {
 			page = page - 1;
 			
 			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, page, pageSize, field, asc);
+			
+			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
+			
+			HttpStatus httpStatus = HttpStatus.OK;
+			
+			if(areaFormacionListDTO.isEmpty()) {
+				httpStatus = HttpStatus.NO_CONTENT;
+			}
+
+			return new ResponseEntity<>(
+					APIResponseDTO.builder()
+					.recordCountPerPage(areaFormacionListEntity.getSize())
+					.totalRecordCount(areaFormacionListEntity.getTotalElements())
+					.totalPages(areaFormacionListEntity.getTotalPages())
+					.content(areaFormacionListDTO)
+					.build(), 
+					httpStatus);	
+		}
+		catch(Exception exception) {
+			LOGGER.error(exception.getMessage());
+			
+			APIExceptionResponseDTO apiExceptionResponse = APIExceptionResponseDTO.builder()
+					.type(ExceptionType.SERVER_EXCEPTION.getValue())
+					.message(ExceptionMessageConstants.INTERNAL_SERVER_ERROR)
+					.exceptionClass(Exception.class.toString())
+					.httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+					.build();
+			
+			throw new APIException(apiExceptionResponse, 
+					apiExceptionResponse.getHttpStatus().value(),
+					exception);
+		}
+	}
+	
+	
+	@Operation(summary = "Buscar áreas de formaciones por nombre de formación")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
+        @ApiResponse(responseCode = "200", description = "Successful operation", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "400", description = "Bad request", 
+        		content = { @Content(mediaType = "application/json", 
+        	    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ),
+        @ApiResponse(responseCode = "500", description = "Internal server error", 
+		        content = { @Content(mediaType = "application/json", 
+			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
+        ) 
+    })
+	@GetMapping(URIConstants.CAMPOS_FORMACION+"/nombre/{nombreCampoFormacion}"+URIConstants.AREAS_FORMACION)
+	public ResponseEntity<?> findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(
+			@PathVariable String nombreCampoFormacion,
+			@RequestParam(defaultValue = "1") Integer page, 
+			@RequestParam(defaultValue = "10") Integer pageSize, 
+			@RequestParam(defaultValue = "id", required = false) String field,
+			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
+		try {
+			page = page - 1;
+			
+			Page<AreaFormacion> areaFormacionListEntity = areaFormacionService.findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(nombreCampoFormacion, page, pageSize, field, asc);
 			
 			List<AreaFormacionDTO> areaFormacionListDTO = areaFormacionMapper.areaFormacionListToAreaFormacionDTOList(areaFormacionListEntity.getContent());
 			

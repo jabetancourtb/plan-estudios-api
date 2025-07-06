@@ -61,6 +61,19 @@ public class AreaFormacionRepositoryImpl implements AreaFormacionRepository {
 
 		return areaFormacionJpaRepository.findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(idCampoFormacion, PageRequest.of(page, pageSize).withSort(sorting));
 	}
+	
+	
+	@Override
+	public Page<AreaFormacion> findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(String nombreCampoFormacion,
+			Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+		Sort sorting = Sort.by(field);
+		
+		if(!asc) {
+			sorting = Sort.by(field).descending();
+		}
+
+		return areaFormacionJpaRepository.findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(nombreCampoFormacion, PageRequest.of(page, pageSize).withSort(sorting));
+	}
 
 	
 }

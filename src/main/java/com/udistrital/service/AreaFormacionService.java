@@ -15,4 +15,6 @@ public interface AreaFormacionService {
 	
 	Page<AreaFormacion> findAreasFormacionByIdCampoFormacionAndWithPaginationAndSorting(Integer idCampoFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
 
+	Page<AreaFormacion> findAreasFormacionByNombreCampoFormacionAndWithPaginationAndSorting(String nombreCampoFormacion, Integer page, Integer pageSize, String field, boolean asc) throws Exception;
+	
 }
