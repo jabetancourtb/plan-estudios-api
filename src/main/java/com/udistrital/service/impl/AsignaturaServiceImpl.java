@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.udistrital.constants.AreaFormacionConstans;
+import com.udistrital.constants.CamposFormacionConstants;
 import com.udistrital.entity.Asignatura;
 import com.udistrital.repository.AsignaturaRepository;
 import com.udistrital.service.AsignaturaService;
@@ -41,23 +43,23 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 		Asignatura a = asignaturaRepository.findAsignaturaByCodigo(codigoAsignatura);
 		
 		if(a.getCampoFormacion().equals("") || a.getCampoFormacion() == null) {
-			a.setCampoFormacion("Otros");
+			a.setCampoFormacion(CamposFormacionConstants.OTROS);
 		}
 		
-		if(a.getCampoFormacion().equals("Ciencias Básicas") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-			a.setAreaFormacion("Electiva Ciencias Básicas");
+		if(a.getCampoFormacion().equals(CamposFormacionConstants.CIENCIAS_BASICAS) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+			a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_CIENCIAS_BASICAS);
 		}
-		else if(a.getCampoFormacion().equals("Socio humanística") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-			a.setAreaFormacion("Electiva Socio humanística");
+		else if(a.getCampoFormacion().equals(CamposFormacionConstants.SOCIO_HUMANISTICA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+			a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_SOCIO_HUMANISTICA);
 		}
-		else if(a.getCampoFormacion().equals("Ingeniería Aplicada") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-			a.setAreaFormacion("Electiva Ingeniería Aplicada");
+		else if(a.getCampoFormacion().equals(CamposFormacionConstants.INGENIERIA_APLICADA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+			a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_INEGNEIRIA_APLICADA);
 		}
-		else if(a.getCampoFormacion().equals("Económico Administrativa") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-			a.setAreaFormacion("Electiva Económico Administrativa");
+		else if(a.getCampoFormacion().equals(CamposFormacionConstants.ECONOMICO_ADMINISTRATIVA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+			a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_ECONOMICO_ADMINISTRATIVA);
 		}
 		else if(a.getAreaFormacion().equals("") || a.getAreaFormacion() == null) {
-			a.setAreaFormacion("Otros");
+			a.setAreaFormacion(AreaFormacionConstans.OTROS);
 		}
 		
 		return a;
@@ -125,23 +127,23 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 		asignaturas.stream().forEach(a -> {
 			
 			if(a.getCampoFormacion().equals("") || a.getCampoFormacion() == null) {
-				a.setCampoFormacion("Otros");
+				a.setCampoFormacion(CamposFormacionConstants.OTROS);
 			}
 			
-			if(a.getCampoFormacion().equals("Ciencias Básicas") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-				a.setAreaFormacion("Electiva Ciencias Básicas");
+			if(a.getCampoFormacion().equals(CamposFormacionConstants.CIENCIAS_BASICAS) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+				a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_CIENCIAS_BASICAS);
 			}
-			else if(a.getCampoFormacion().equals("Socio humanística") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-				a.setAreaFormacion("Electiva Socio humanística");
+			else if(a.getCampoFormacion().equals(CamposFormacionConstants.SOCIO_HUMANISTICA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+				a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_SOCIO_HUMANISTICA);
 			}
-			else if(a.getCampoFormacion().equals("Ingeniería Aplicada") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-				a.setAreaFormacion("Electiva Ingeniería Aplicada");
+			else if(a.getCampoFormacion().equals(CamposFormacionConstants.INGENIERIA_APLICADA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+				a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_INEGNEIRIA_APLICADA);
 			}
-			else if(a.getCampoFormacion().equals("Económico Administrativa") && (a.getAreaFormacion().equals("Electiva") || a.getAreaFormacion().equals("Electivas"))) {
-				a.setAreaFormacion("Electiva Económico Administrativa");
+			else if(a.getCampoFormacion().equals(CamposFormacionConstants.ECONOMICO_ADMINISTRATIVA) && (a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVA) || a.getAreaFormacion().equals(AreaFormacionConstans.ELECTIVAS))) {
+				a.setAreaFormacion(AreaFormacionConstans.ELECTIVA_ECONOMICO_ADMINISTRATIVA);
 			}
 			else if(a.getAreaFormacion().equals("") || a.getAreaFormacion() == null) {
-				a.setAreaFormacion("Otros");
+				a.setAreaFormacion(AreaFormacionConstans.OTROS);
 			}
 		});
 		
