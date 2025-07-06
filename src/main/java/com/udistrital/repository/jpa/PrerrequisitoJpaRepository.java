@@ -36,7 +36,7 @@ public interface PrerrequisitoJpaRepository extends JpaRepository<Prerrequisito,
 			+ " JOIN res_asignatura a ON r.asignatura_codigo = a.codigo "
 			+ " JOIN res_asignatura p ON r.prerrequisito_codigo = p.codigo"
 			+ " WHERE p.codigo = :codigoPrerrequisito", nativeQuery = true)
-	Page<Prerrequisito> findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(@Param("codigoPrerrequisito") Integer codigoPrerrequisito, PageRequest pageRequest) throws Exception;
+	Page<Prerrequisito> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(@Param("codigoPrerrequisito") Integer codigoPrerrequisito, PageRequest pageRequest) throws Exception;
 	
 	
 	@Query(value = "SELECT "
@@ -51,7 +51,7 @@ public interface PrerrequisitoJpaRepository extends JpaRepository<Prerrequisito,
 			+ " JOIN res_asignatura a ON r.asignatura_codigo = a.codigo "
 			+ " JOIN res_asignatura p ON r.prerrequisito_codigo = p.codigo"
 			+ " WHERE a.codigo = :codigoAsignatura", nativeQuery = true)
-	Page<Prerrequisito> findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(@Param("codigoAsignatura") Integer codigoAsignatura, PageRequest pageRequest) throws Exception;
+	Page<Prerrequisito> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(@Param("codigoAsignatura") Integer codigoAsignatura, PageRequest pageRequest) throws Exception;
 	
 	
 }

@@ -24,16 +24,16 @@ public class PrerrequisitoServiceImpl implements PrerrequisitoService {
 
 	
 	@Override
-	public Page<Prerrequisito> findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(
+	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
 			Integer codigoPrerrequisito, Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return prerrequisitoRepository.findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
+		return prerrequisitoRepository.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
+	public Page<Prerrequisito> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
-		return prerrequisitoRepository.findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
+		return prerrequisitoRepository.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
 	}
 
 }

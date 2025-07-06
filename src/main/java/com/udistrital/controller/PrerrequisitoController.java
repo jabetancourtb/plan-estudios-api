@@ -108,7 +108,7 @@ public class PrerrequisitoController {
 	}
 	
 	
-	@Operation(summary = "Buscar asignaturas prerrequisitos por código, paginación y campo")
+	@Operation(summary = "Buscar asignaturas posteriores por código de prerrequisito, paginación y campo")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
@@ -125,7 +125,7 @@ public class PrerrequisitoController {
         ) 
     })
 	@GetMapping(URIConstants.PRERREQUISITOS+"/{codigoPrerrequisito}")
-	public ResponseEntity<?> findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(
+	public ResponseEntity<?> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
 			@PathVariable Integer codigoPrerrequisito,
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
@@ -134,7 +134,7 @@ public class PrerrequisitoController {
 		try {
 			page = page - 1;
 			
-			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
+			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
 			
 			List<PrerrequisitoDTO> prerrequisitoListDTO = prerrequisitoMapper.prerrequisitoListToPrerrequisitoDTOList(prerrequisitoListEntity.getContent());
 			
@@ -187,7 +187,7 @@ public class PrerrequisitoController {
         ) 
     })
 	@GetMapping(URIConstants.ASIGNATURAS+"/{codigoAsignatura}"+URIConstants.PRERREQUISITOS)
-	public ResponseEntity<?> findAsignaturaByCodigoWithPaginationAndSorting(
+	public ResponseEntity<?> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(
 			@PathVariable Integer codigoAsignatura,
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
@@ -196,7 +196,7 @@ public class PrerrequisitoController {
 		try {
 			page = page - 1;
 			
-			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
+			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
 			
 			List<PrerrequisitoDTO> prerrequisitoListDTO = prerrequisitoMapper.prerrequisitoListToPrerrequisitoDTOList(prerrequisitoListEntity.getContent());
 			

@@ -32,7 +32,7 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 
 	
 	@Override
-	public Page<Prerrequisito> findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(
+	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
 			Integer codigoPrerrequisito, Integer page, Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -40,12 +40,12 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return prerrequisitoJpaRepository.findPrerrequisitosByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, PageRequest.of(page, pageSize).withSort(sorting));
+		return prerrequisitoJpaRepository.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
+	public Page<Prerrequisito> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -53,7 +53,7 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return prerrequisitoJpaRepository.findPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, PageRequest.of(page, pageSize).withSort(sorting));
+		return prerrequisitoJpaRepository.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 }
