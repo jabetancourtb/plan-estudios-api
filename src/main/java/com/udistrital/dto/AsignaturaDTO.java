@@ -24,23 +24,23 @@ public class AsignaturaDTO {
     private String carrera;
 
     @NotNull
-    @JsonProperty("semestre_asignatura")
+    @JsonProperty("semestreAsignatura")
     private Integer semestreAsignatura;
 
     @NotNull
-    @JsonProperty("codigo_condor")
+    @JsonProperty("codigoCondor")
     private Integer codigoCondor;
 
     @NotBlank
-    @JsonProperty("campo_formacion")
+    @JsonProperty("campoFormacion")
     private String campoFormacion;
 
     @NotBlank
-    @JsonProperty("area_formacion")
+    @JsonProperty("areaFormacion")
     private String areaFormacion;
 
     @NotBlank
-    @JsonProperty("Espacio_Academico")
+    @JsonProperty("EspacioAcademico")
     private String espacioAcademico;
 
     @NotBlank
@@ -52,7 +52,7 @@ public class AsignaturaDTO {
     private String nombre;
 
     @NotNull
-    @JsonProperty("numero_creditos")
+    @JsonProperty("numeroCreditos")
     private Integer numeroCreditos;
 
     @NotNull
@@ -68,19 +68,19 @@ public class AsignaturaDTO {
     private Integer hta;
 
     @NotBlank
-    @JsonProperty("clasificacion_condor")
+    @JsonProperty("clasificacionCondor")
     private String clasificacionCondor;
 
     @NotNull
-    @JsonProperty("clasificacion_espacio")
+    @JsonProperty("clasificacionEspacio")
     private Integer clasificacionEspacio;
 
     @NotBlank
-    @JsonProperty("Obligatorio_Basico")
+    @JsonProperty("ObligatorioBasico")
     private String obligatorioBasico;
 
     @NotBlank
-    @JsonProperty("Obligatorio_Complementario")
+    @JsonProperty("ObligatorioComplementario")
     private String obligatorioComplementario;
 
     @NotBlank
