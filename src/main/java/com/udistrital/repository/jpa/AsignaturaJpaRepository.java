@@ -14,7 +14,14 @@ public interface AsignaturaJpaRepository extends JpaRepository<Asignatura, Integ
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.carrera = :carrera", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByCarreraAndWithPaginationAndSorting(@Param("carrera") String carrera, PageRequest pageRequest) throws Exception;
 	
-	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.campo_formacion = :campoFormacion", nativeQuery = true)
+	
+	@Query(value = " SELECT a.* "
+			+ " FROM res_asignatura a "
+			+ " WHERE "
+			+ " CASE "
+			+ "		WHEN (:campoFormacion = 'Otros') THEN (a.campo_formacion = '') "
+			+ "		ELSE a.campo_formacion LIKE CONCAT('%', :campoFormacion, '%') "
+			+ " END", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByCampoFormacionAndWithPaginationAndSorting(@Param("campoFormacion") String campoFormacion, PageRequest pageRequest) throws Exception;
 	
 	
