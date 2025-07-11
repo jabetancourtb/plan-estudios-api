@@ -220,7 +220,7 @@ public class AreaFormacionController {
 	}
 	
 	
-	@Operation(summary = "Buscar áreas de formaciones por id de formación")
+	@Operation(summary = "Buscar áreas de formaciones por id de campo de formación")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
@@ -282,7 +282,7 @@ public class AreaFormacionController {
 	}
 	
 	
-	@Operation(summary = "Buscar áreas de formaciones por nombre de formación")
+	@Operation(summary = "Buscar áreas de formaciones por nombre de campo de formación")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
