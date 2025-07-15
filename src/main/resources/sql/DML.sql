@@ -211,18 +211,13 @@ UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Ingeniería de Sof
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Ingeniería de Software' WHERE (`codigo` = '46');
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración de Sistemas' WHERE (`codigo` = '64');
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '66');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de  Redes' WHERE (`codigo` = '67');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración de Sistemas' WHERE (`codigo` = '69');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de  Redes' WHERE (`codigo` = '73');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '78');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '88');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '89');
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '67');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '66');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '89');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '88');
-UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes ' WHERE (`codigo` = '78');
+UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración de Sistemas' WHERE (`codigo` = '69');
+UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Sistemas de Comunicaciones' WHERE (`codigo` = '72');
 UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '73');
+UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '78');
+UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '88');
+UPDATE `u_distrital`.`res_asignatura` SET `area_formacion` = 'Administración y Gestión de Redes' WHERE (`codigo` = '89');
 
 /* INSERT TABLA area_formacion */
 INSERT INTO area_formacion(id, id_campo_formacion, nombre, color_html) VALUES(1, 1, 'Matemáticas', '#87CEEB');
