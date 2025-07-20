@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.udistrital</groupId>
-	<artifactId>com.udistrital</artifactId>
+	<artifactId>plan-estudios-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-udistrital</name>
+	<name>plan-estudios-api</name>
 	<description>Api de plan de estudios</description>
 	<url/>
 	<licenses>
