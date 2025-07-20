@@ -1,11 +1,11 @@
 CREATE TABLE res_asignatura_prerrequisito 
 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    asignatura_codigo  INT NOT NULL,
-    prerrequisito_codigo INT NOT NULL,
-    CONSTRAINT fk_materia FOREIGN KEY (asignatura_codigo)
+    codigo_asignatura_anterior INT NOT NULL,
+    codigo_asignatura_posterior INT NOT NULL,
+    CONSTRAINT fk_materia FOREIGN KEY (codigo_asignatura_anterior)
         REFERENCES res_asignatura(codigo),
-    CONSTRAINT fk_prerequisito FOREIGN KEY (prerrequisito_codigo)
+    CONSTRAINT fk_prerequisito FOREIGN KEY (codigo_asignatura_posterior)
         REFERENCES res_asignatura(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
