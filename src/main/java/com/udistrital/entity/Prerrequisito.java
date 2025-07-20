@@ -22,17 +22,17 @@ public class Prerrequisito {
 	private Integer id;
 
 	
-	private Integer prerrequisitoCodigo;
+	private Integer asignaturaAnteriorCodigo;
 	
-    private Integer prerrequisitoSemestre;
+    private Integer asignaturaAnteriorSemestre;
 
-    private String prerrequisito;
+    private String asignaturaAnteriorNombre;
 
     
-    private Integer asignaturaCodigo;
+    private Integer asignaturaPosteriorCodigo;
 	
-    private Integer asignaturaSemestre;
+    private Integer asignaturaPosteriorSemestre;
 
-    private String asignatura;
+    private String asignaturaPosteriorNombre;
 	
 }

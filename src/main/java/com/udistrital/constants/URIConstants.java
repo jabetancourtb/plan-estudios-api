@@ -8,5 +8,7 @@ public class URIConstants {
 	public static final String SEMESTRES = "/semestres";
 	public static final String ASIGNATURAS = "/asignaturas";
 	public static final String PRERREQUISITOS = "/prerrequisitos";
+	public static final String ANTERIORES = "/anteriores";
+	public static final String POSTERIORES = "/posteriores";
 	
 }

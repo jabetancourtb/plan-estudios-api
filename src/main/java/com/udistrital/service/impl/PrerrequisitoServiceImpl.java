@@ -17,23 +17,23 @@ public class PrerrequisitoServiceImpl implements PrerrequisitoService {
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPrerrequisitosWithPaginationAndSorting(Integer page,
+	public Page<Prerrequisito> findPrerrequisitosWithPaginationAndSorting(Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
-		return prerrequisitoRepository.findAsignaturasPrerrequisitosWithPaginationAndSorting(page, pageSize, field, asc);
+		return prerrequisitoRepository.findPrerrequisitosWithPaginationAndSorting(page, pageSize, field, asc);
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
+	public Page<Prerrequisito> findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(
 			Integer codigoPrerrequisito, Integer page, Integer pageSize, String field, boolean asc) throws Exception {
-		return prerrequisitoRepository.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
+		return prerrequisitoRepository.findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
+	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
-		return prerrequisitoRepository.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
+		return prerrequisitoRepository.findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
 	}
 
 }

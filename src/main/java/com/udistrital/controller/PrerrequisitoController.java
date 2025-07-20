@@ -47,7 +47,7 @@ public class PrerrequisitoController {
 	private PrerrequisitoService prerrequisitoService;
 	
 	
-	@Operation(summary = "Buscar asignaturas y prerrequisitos por paginación y campo")
+	@Operation(summary = "Buscar prerrequisitos por paginación y campo")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
@@ -64,15 +64,15 @@ public class PrerrequisitoController {
         ) 
     })
 	@GetMapping(URIConstants.PRERREQUISITOS)
-	public ResponseEntity<?> findAsignaturasPrerrequisitosWithPaginationAndSorting(
+	public ResponseEntity<?> findPrerrequisitosWithPaginationAndSorting(
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "prerrequisito_codigo", required = false) String field,
+			@RequestParam(defaultValue = "id", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPrerrequisitosWithPaginationAndSorting(page, pageSize, field, asc);
+			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findPrerrequisitosWithPaginationAndSorting(page, pageSize, field, asc);
 			
 			List<PrerrequisitoDTO> prerrequisitoListDTO = prerrequisitoMapper.prerrequisitoListToPrerrequisitoDTOList(prerrequisitoListEntity.getContent());
 			
@@ -108,7 +108,7 @@ public class PrerrequisitoController {
 	}
 	
 	
-	@Operation(summary = "Buscar asignaturas posteriores por código de prerrequisito, paginación y campo")
+	@Operation(summary = "Buscar asignaturas anteriores por código de asignatura, paginación y campo")
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "204", description = "No content", content =  @Content),
         @ApiResponse(responseCode = "200", description = "Successful operation", 
@@ -124,17 +124,17 @@ public class PrerrequisitoController {
 			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
         ) 
     })
-	@GetMapping(URIConstants.PRERREQUISITOS+"/{codigoPrerrequisito}")
-	public ResponseEntity<?> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
-			@PathVariable Integer codigoPrerrequisito,
+	@GetMapping(URIConstants.ASIGNATURAS+"/{codigo}"+URIConstants.ANTERIORES)
+	public ResponseEntity<?> findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(
+			@PathVariable Integer codigo,
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "prerrequisito_codigo", required = false) String field,
+			@RequestParam(defaultValue = "id", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, page, pageSize, field, asc);
+			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(codigo, page, pageSize, field, asc);
 			
 			List<PrerrequisitoDTO> prerrequisitoListDTO = prerrequisitoMapper.prerrequisitoListToPrerrequisitoDTOList(prerrequisitoListEntity.getContent());
 			
@@ -186,17 +186,17 @@ public class PrerrequisitoController {
 			    schema = @Schema(implementation = APIExceptionResponseDTO.class)) }
         ) 
     })
-	@GetMapping(URIConstants.ASIGNATURAS+"/{codigoAsignatura}"+URIConstants.PRERREQUISITOS)
-	public ResponseEntity<?> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(
-			@PathVariable Integer codigoAsignatura,
+	@GetMapping(URIConstants.ASIGNATURAS+"/{codigo}"+URIConstants.POSTERIORES)
+	public ResponseEntity<?> findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(
+			@PathVariable Integer codigo,
 			@RequestParam(defaultValue = "1") Integer page, 
 			@RequestParam(defaultValue = "10") Integer pageSize, 
-			@RequestParam(defaultValue = "asignatura_codigo", required = false) String field,
+			@RequestParam(defaultValue = "id", required = false) String field,
 			@RequestParam(defaultValue = "true", required = false) boolean asc) throws Exception {
 		try {
 			page = page - 1;
 			
-			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, page, pageSize, field, asc);
+			Page<Prerrequisito> prerrequisitoListEntity = prerrequisitoService.findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(codigo, page, pageSize, field, asc);
 			
 			List<PrerrequisitoDTO> prerrequisitoListDTO = prerrequisitoMapper.prerrequisitoListToPrerrequisitoDTOList(prerrequisitoListEntity.getContent());
 			

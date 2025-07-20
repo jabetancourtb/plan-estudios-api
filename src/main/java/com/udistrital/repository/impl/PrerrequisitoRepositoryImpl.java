@@ -19,7 +19,7 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPrerrequisitosWithPaginationAndSorting(Integer page,
+	public Page<Prerrequisito> findPrerrequisitosWithPaginationAndSorting(Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -27,25 +27,25 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return prerrequisitoJpaRepository.findAsignaturasPrerrequisitosWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
+		return prerrequisitoJpaRepository.findPrerrequisitosWithPaginationAndSorting(PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(
-			Integer codigoPrerrequisito, Integer page, Integer pageSize, String field, boolean asc) throws Exception {
+	public Page<Prerrequisito> findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(
+			Integer codigo, Integer page, Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
 		if(!asc) {
 			sorting = Sort.by(field).descending();
 		}
 
-		return prerrequisitoJpaRepository.findAsignaturasPosterioresByCodigoPrerrequisitoWithPaginationAndSorting(codigoPrerrequisito, PageRequest.of(page, pageSize).withSort(sorting));
+		return prerrequisitoJpaRepository.findAsignaturasAnterioresByCodigoAsignaturaWithPaginationAndSorting(codigo, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 	
 	@Override
-	public Page<Prerrequisito> findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(Integer codigoAsignatura, Integer page,
+	public Page<Prerrequisito> findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(Integer codigo, Integer page,
 			Integer pageSize, String field, boolean asc) throws Exception {
 		Sort sorting = Sort.by(field);
 		
@@ -53,7 +53,7 @@ public class PrerrequisitoRepositoryImpl implements PrerrequisitoRepository {
 			sorting = Sort.by(field).descending();
 		}
 
-		return prerrequisitoJpaRepository.findAsignaturasPrerrequisitosByCodigoAsignaturaWithPaginationAndSorting(codigoAsignatura, PageRequest.of(page, pageSize).withSort(sorting));
+		return prerrequisitoJpaRepository.findAsignaturasPosterioresByCodigoAsignaturaWithPaginationAndSorting(codigo, PageRequest.of(page, pageSize).withSort(sorting));
 	}
 
 }

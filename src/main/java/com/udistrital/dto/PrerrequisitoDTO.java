@@ -18,27 +18,27 @@ public class PrerrequisitoDTO {
     private Integer id;
 
 	@NotNull
-    @JsonProperty("prerrequisitoCodigo")
-    private Integer prerrequisitoCodigo;
+    @JsonProperty("asignaturaAnteriorCodigo")
+    private Integer asignaturaAnteriorCodigo;
 
 	@NotNull
-    @JsonProperty("prerrequisitoSemestre")
-    private Integer prerrequisitoSemestre;
+    @JsonProperty("asignaturaAnteriorSemestre")
+    private Integer asignaturaAnteriorSemestre;
 
     @NotNull
-    @JsonProperty("prerrequisito")
-    private String prerrequisito;
+    @JsonProperty("asignaturaAnteriorNombre")
+    private String asignaturaAnteriorNombre;
 
     @NotNull
-    @JsonProperty("asignaturaCodigo")
-    private Integer asignaturaCodigo;
+    @JsonProperty("asignaturaPosteriorCodigo")
+    private Integer asignaturaPosteriorCodigo;
 
     @NotNull
-    @JsonProperty("asignaturaSemestre")
-    private Integer asignaturaSemestre;
+    @JsonProperty("asignaturaPosteriorSemestre")
+    private Integer asignaturaPosteriorSemestre;
 
     @NotNull
-    @JsonProperty("asignatura")
-    private String asignatura;
+    @JsonProperty("asignaturaPosteriorNombre")
+    private String asignaturaPosteriorNombre;
     
 }
