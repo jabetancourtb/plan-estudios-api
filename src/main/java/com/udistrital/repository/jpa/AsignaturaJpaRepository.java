@@ -11,6 +11,17 @@ import com.udistrital.entity.Asignatura;
 
 public interface AsignaturaJpaRepository extends JpaRepository<Asignatura, Integer> {
 	
+	
+	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.codigo = :codigoAsignatura", nativeQuery = true)
+	Asignatura findAsignaturaByCodigo(@Param("codigoAsignatura") Integer codigoAsignatura) throws Exception;
+	
+	
+	@Query(value = "SELECT a.* FROM res_asignatura a", 
+			countQuery = "SELECT COUNT(*) FROM res_asignatura", 
+			nativeQuery = true)
+	Page<Asignatura> findAll(PageRequest pageRequest) throws Exception;
+	
+	
 	@Query(value = "SELECT a.* FROM res_asignatura a WHERE a.carrera = :carrera", nativeQuery = true)
 	Page<Asignatura> findAsignaturasByCarreraAndWithPaginationAndSorting(@Param("carrera") String carrera, PageRequest pageRequest) throws Exception;
 	

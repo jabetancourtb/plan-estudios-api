@@ -40,7 +40,7 @@ public class AsignaturaRepositoryImpl implements AsignaturaRepository {
 	
 	@Override
 	public Asignatura findAsignaturaByCodigo(Integer codigoAsignatura) throws Exception {
-		return asignaturaJpaRepository.findById(codigoAsignatura).orElse(null);
+		return asignaturaJpaRepository.findAsignaturaByCodigo(codigoAsignatura);
 	}
 
 	
