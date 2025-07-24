@@ -10,6 +10,13 @@ import com.udistrital.entity.Carrera;
 
 public interface CarreraJpaRepository extends JpaRepository<Carrera, Integer> {
 	
+	
+	@Query(value = "SELECT c.id, c.nombre FROM carrera c", 
+			countQuery = "SELECT COUNT(*) FROM carrera", 
+			nativeQuery = true)
+	Page<Carrera> findAll(PageRequest pageRequest) throws Exception;
+	
+	
 	@Query(value = "SELECT c.id, c.nombre FROM carrera c WHERE c.nombre LIKE CONCAT('%', :nombre, '%')", nativeQuery = true)
 	Page<Carrera> findCarrerasByNameAndWithPaginationAndSorting(@Param("nombre") String nombre, PageRequest pageRequest) throws Exception;
 	
