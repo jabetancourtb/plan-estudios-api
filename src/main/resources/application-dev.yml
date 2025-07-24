@@ -1,0 +1,43 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api/v1
+
+springdoc:
+  swagger-ui.doc-expansion: none
+            
+spring:
+  application:
+    name: api-udistrital
+  api-docs:
+    path: /api-docs
+  datasource:
+    url: jdbc:mysql://localhost:3306/u_distrital
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        dialect.format_sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+ 
+
+    
+          
