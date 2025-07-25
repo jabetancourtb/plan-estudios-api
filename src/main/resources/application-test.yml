@@ -12,9 +12,9 @@ spring:
   api-docs:
     path: /api-docs
   datasource:
-    url: jdbc:mysql://168.231.125.253:5432/default
-    username: mysql
-    password: QCD4r32cIxVpzcKc0aeImnwdcjtInPHvZVYtTpP5QNnc7wKkh7q0hMo6ZBLEKx4r
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-timeout: 60000
